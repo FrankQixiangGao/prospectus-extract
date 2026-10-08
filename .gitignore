@@ -1,0 +1,17 @@
+# Interview problem statement — keep out of the repo
+mini_project_v2b_fund_prospectus.pdf
+
+# Secrets
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# macOS
+.DS_Store
