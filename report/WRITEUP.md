@@ -123,9 +123,11 @@ scores utility (+1 correct, −w wrong, −1 withheld) and reports the utility-m
 
 ## 5. Limitations and what changes at scale
 
-- **Ground truth** was drafted from each PDF's text layer by an AI assistant, independent of the pipeline's
-  outputs, and verified by me against the PDFs (all `not_reported` rows plus a sample per document).
-  **[TODO Frank: keep this sentence only after you have actually done this check.]**
+- **Ground truth** was drafted from each PDF's text layer by an AI assistant, independently of the pipeline's
+  outputs, following `eval/spec.md`, with page numbers for every value. It has **not yet been fully
+  human-verified**; agreement between an AI-drafted label set and an AI extractor is weaker evidence than
+  hand labels, and the first thing I would do with more time is verify every `not_reported` row and a sample
+  per document against the PDFs.
 - 15 targets is a small set; 100% here is not a generalization claim. Untested: scanned PDFs (no OCR path),
   tables rendered as images, documents without N-1A section headings.
 - **10k documents:** the per-document path parallelizes as-is; the changes are a queue with content-hash

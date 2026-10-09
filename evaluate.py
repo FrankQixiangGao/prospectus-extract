@@ -268,14 +268,24 @@ def plots(results, out):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    fig, ax = plt.subplots(figsize=(6, 4))
-    for r in results:
-        ax.scatter(r["tokens_per_doc"], r["end_to_end_accuracy"], s=40 + 20 * (r["p95_s"] or 0), alpha=.7)
-        ax.annotate(f"{os.path.basename(r['run'])}\np95 {r['p95_s']}s", (r["tokens_per_doc"], r["end_to_end_accuracy"]),
-                    textcoords="offset points", xytext=(6, 4), fontsize=8)
-    ax.set_xlabel("tokens per document (in+out)")
-    ax.set_ylabel("end-to-end accuracy")
-    ax.set_title("Accuracy vs cost (bubble size = p95 latency)")
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4), sharey=True)
+    for i, r in enumerate(results):
+        name = os.path.basename(r["run"])
+        usd, acc, p95 = r["latency"]["all"]["usd_per_doc"], r["end_to_end_accuracy"], r["p95_s"]
+        dy = 6 + 9 * (i % 3)                     # stagger labels so overlapping points stay readable
+        ax1.scatter(usd, acc, s=60, alpha=.75)
+        ax1.annotate(f"{name} ({r['tokens_per_doc']/1000:.1f}k tok)", (usd, acc), textcoords="offset points",
+                     xytext=(6, -dy), fontsize=8)
+        ax2.scatter(p95, acc, s=60, alpha=.75)
+        ax2.annotate(name, (p95, acc), textcoords="offset points", xytext=(6, -dy), fontsize=8)
+    ax1.set_xscale("log")
+    ax1.set_xlabel("$ per document (log scale)")
+    ax1.set_ylabel("end-to-end accuracy")
+    ax1.set_title("Accuracy vs cost")
+    ax2.axvline(LATENCY_TARGET_P95, ls="--", lw=1, color="gray")
+    ax2.text(LATENCY_TARGET_P95, ax2.get_ylim()[0], " p95 target", fontsize=8, color="gray", va="bottom")
+    ax2.set_xlabel("p95 latency, s (end to end)")
+    ax2.set_title("Accuracy vs latency")
     fig.tight_layout()
     fig.savefig(os.path.join(out, "tradeoff.png"), dpi=150)
     fig, ax = plt.subplots(figsize=(6, 4))
