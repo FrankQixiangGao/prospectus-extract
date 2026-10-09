@@ -35,7 +35,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("pdf_dir")
     ap.add_argument("manifest")
-    ap.add_argument("--config", default="c1", choices=sorted(CONFIGS))
+    ap.add_argument("--config", default="c4", choices=sorted(CONFIGS))   # c4 = chosen operating point
     ap.add_argument("--out", default="runs")
     ap.add_argument("--tag", default="", help="suffix for the run folder, e.g. iter2")
     ap.add_argument("--dry-run", action="store_true")

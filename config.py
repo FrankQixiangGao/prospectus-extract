@@ -10,6 +10,8 @@ CONFIGS = {
     "c3": dict(model="claude-haiku-5-5", locate="section", split_calls=False),
     # C1-split: C1 with one parallel call per table (latency experiment)
     "c1s": dict(model="claude-haiku-5-5", locate="keyword", split_calls=True),
+    # C4: C1, and escalate to C3 (whole section) only when label-free checks fail
+    "c4": dict(model="claude-haiku-5-5", locate="keyword", split_calls=False, escalate=True),  # operating point
 }
 
 COMMON = dict(
@@ -33,6 +35,19 @@ TABLES = {
         cues=[r"return\s+before\s+taxes", r"\b(1|one)[\s-]+year", r"\b(5|five)[\s-]+years?", r"\b(10|ten)[\s-]+years?",
               r"since\s+inception", r"periods?\s+end(ed|ing)"],
     ),
+}
+
+# ---- Fields. To add a field live: add it here (+ range), describe it in FIELD_INSTRUCTIONS, and add an
+#      anchor in TABLES if it lives in a table other than fees/performance. Nothing else changes.
+FIELDS = ["gross_expense_ratio", "net_expense_ratio", "total_return_before_tax"]
+PERIODS = ["current", "1y", "5y", "10y", "since_inception"]
+DATED_FIELDS = {"total_return_before_tax"}          # keyed by the performance table's as-of date
+FIELD_RANGES = {"gross_expense_ratio": (0, 10), "net_expense_ratio": (0, 10), "total_return_before_tax": (-100, 500)}
+
+# ---- $ per million tokens (platform.claude.com pricing page, Oct 2026; Haiku 5.5 tier for prompts <= 100k)
+PRICES = {
+    "claude-haiku-5-5": dict(input=0.10, output=0.50, cache_write=0.125, cache_read=0.01),
+    "claude-sonnet-5-5": dict(input=2.00, output=10.00, cache_write=2.50, cache_read=0.10),
 }
 
 # ---- Fields: what the extractor is told (the field spec, condensed) ----
@@ -59,4 +74,5 @@ Rules:
   If the fund has a single unlabeled class (typical for ETFs), use "single".
 - confidence: your probability (0-1) that the value is correct for this exact class, field and period.
 - Ignore every fund other than the target, even if its tables are on the same pages.
+- If the target fund's tables are not on these pages, return an empty values list. Never substitute another fund.
 """

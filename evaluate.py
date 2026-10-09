@@ -13,9 +13,10 @@ import os
 import statistics as st
 from collections import Counter, defaultdict
 
-from config import COMMON
+from config import COMMON, PRICES
 
 TOL = 0.005
+WRONG_COST, ABSTAIN_COST = 5.0, 1.0   # business priority: a wrong number costs 5x a "not found" (CLI-tunable)
 SIZE_BUCKETS = [(20, "small (<=20p)"), (100, "medium (21-100p)"), (10**9, "large (>100p)")]
 LATENCY_TARGET_P95 = 10.0  # seconds, see write-up for derivation
 
@@ -29,7 +30,7 @@ def load_gt(path):
     for r in csv.DictReader(open(path, encoding="utf-8")):
         k = (r["file"], r["fund"], r["share_class"], r["field"], r["period"])
         gt[k] = dict(value=fnum(r["value"]), status=r["status"], page=int(r["page"]) if r["page"] else None,
-                     governs=r.get("governs", "true").lower() == "true")
+                     governs=r.get("governs", "true").lower() == "true", inception_date=r.get("inception_date") or None)
     # derived: fee_waiver = gross - net, computed from labeled inputs (not labeled by hand)
     for (f, fund, c, field, p), g in list(gt.items()):
         if field == "gross_expense_ratio":
@@ -45,6 +46,7 @@ def load_run(d):
     for r in csv.DictReader(open(os.path.join(d, "predictions.csv"), encoding="utf-8")):
         k = (r["file"], r["fund"], r["share_class"], r["field"], r["period"])
         preds[k] = dict(value=fnum(r["value"]), status=r["status"], conf=float(r["confidence"] or 0),
+                        inception_date=r.get("inception_date"),
                         page=int(r["page"]) if r["page"] else None, raw=r["raw_value"],
                         check=fnum(r["check"]), llm_conf=fnum(r["llm_conf"]))
     traces = {(t["file"], t["fund"]): t for t in map(json.loads, open(os.path.join(d, "trace.jsonl")))}
@@ -98,6 +100,14 @@ def classify(k, g, p, gt, tr):
 
 
 PREDS_CACHE = {}
+
+
+def call_cost(c):
+    p = PRICES.get(c.get("model"))
+    if not p:
+        return 0.0
+    return (c["input_tokens"] * p["input"] + c["output_tokens"] * p["output"]
+            + c.get("cache_write_tokens", 0) * p["cache_write"] + c.get("cache_read_tokens", 0) * p["cache_read"]) / 1e6
 
 
 def pctl(xs, q):
@@ -201,7 +211,8 @@ def evaluate_run(d, gt, thr):
                                           for c in t["llm_calls"]) for t in ts)),
             cached_tok_mean=round(st.mean(sum(c.get("cache_read_tokens", 0) for c in t["llm_calls"]) for t in ts)),
             out_tok_mean=round(st.mean(sum(c["output_tokens"] for c in t["llm_calls"]) for t in ts)),
-            llm_calls_mean=round(st.mean(len(t["llm_calls"]) for t in ts), 2))
+            llm_calls_mean=round(st.mean(len(t["llm_calls"]) for t in ts), 2),
+            usd_per_doc=round(st.mean(sum(call_cost(c) for c in t["llm_calls"]) for t in ts), 5))
     res_ok = res_n = 0
     rp = os.path.join(d, "resolved.csv")
     if os.path.exists(rp):
@@ -218,8 +229,30 @@ def evaluate_run(d, gt, thr):
                 continue
             res_n += 1
             res_ok += resolved.get(k4) is not None and abs(resolved[k4] - gov[0]["value"]) < TOL
+    # utility at each threshold: +1 correct, -WRONG_COST wrong, -ABSTAIN_COST withheld/missed
+    def utility(th):
+        u = 0.0
+        for r in answerable:
+            p = r["p"]
+            if p is None or p["status"] != "reported" or p["conf"] < th:
+                u -= ABSTAIN_COST
+            else:
+                u += 1.0 if r["outcome"] == "correct" else -WRONG_COST
+        return u / max(1, len(answerable))
+    ths = sorted({0.0, thr} | {r["p"]["conf"] for r in answerable if r["p"] and r["p"]["status"] == "reported"})
+    best_th = max(ths, key=lambda th: (utility(th), -th))
+    # inception dates for since-inception keys
+    inc_ok = inc_n = 0
+    for r in direct:
+        gi = r["g"].get("inception_date")
+        if gi and r["g"]["status"] == "reported":
+            inc_n += 1
+            inc_ok += bool(r["p"]) and (r["p"].get("inception_date") or "")[:10] == gi
     correct = cats["correct"]
     return dict(
+        utility=dict(wrong_cost=WRONG_COST, abstain_cost=ABSTAIN_COST, at_threshold=round(utility(thr), 3),
+                     best_threshold=best_th, best_utility=round(utility(best_th), 3)),
+        inception_dates=f"{inc_ok}/{inc_n}",
         resolution=f"{res_ok}/{res_n} keys present in 2+ documents resolved to the governing value",
         run=d, n_keys=n, end_to_end_accuracy=round(correct / n, 3) if n else 0,
         precision_answered=round(correct / max(1, n - cats["abstained"] - cats["missed"]), 3),
@@ -269,16 +302,21 @@ def plots(results, out):
 
 def to_md(results):
     L = ["# Evaluation report", ""]
-    L += ["| run | keys | e2e acc | precision (answered) | coverage | tokens/doc | p95 s |", "|---|---|---|---|---|---|---|"]
+    L += ["| run | keys | e2e acc | precision (answered) | coverage | tokens/doc | $/doc | p95 s | utility | best thr |",
+          "|---|---|---|---|---|---|---|---|---|---|"]
     for r in results:
         L.append(f"| {os.path.basename(r['run'])} | {r['n_keys']} | {r['end_to_end_accuracy']} | "
-                 f"{r['precision_answered']} | {r['coverage']} | {r['tokens_per_doc']} | {r['p95_s']} |")
+                 f"{r['precision_answered']} | {r['coverage']} | {r['tokens_per_doc']} | "
+                 f"{r['latency']['all']['usd_per_doc']} | {r['p95_s']} | {r['utility']['at_threshold']} | "
+                 f"{r['utility']['best_threshold']} |")
     for r in results:
         L += ["", f"## {os.path.basename(r['run'])}", "", "**Outcome categories**: " + json.dumps(r["categories"]),
               "", "**First failing stage**: " + json.dumps(r["first_failing_stage"]),
               "", "**Per-stage**: " + json.dumps(r["per_stage"]),
               "", "**Derived (fee_waiver) propagation**: " + json.dumps(r["derived_propagation"]),
               "", "**Cross-document resolution**: " + r["resolution"],
+              "", "**Inception dates (since-inception keys)**: " + r["inception_dates"],
+              "", "**Utility**: " + json.dumps(r["utility"]),
               "", "**Label-free signal**: " + json.dumps(r["label_free_signal"]),
               "", "**Examples**:"] + [f"- {k}: {v}" for k, v in r["examples"].items()]
         L += ["", "| size | n | p50 s | p95 s | parse | identify | locate | extract | normalize | in tok | out tok |",
@@ -290,15 +328,26 @@ def to_md(results):
     return "\n".join(L) + "\n"
 
 
+def set_costs(wrong, abstain):
+    global WRONG_COST, ABSTAIN_COST
+    WRONG_COST, ABSTAIN_COST = wrong, abstain
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("runs", nargs="+")
     ap.add_argument("--gt", default="eval/ground_truth.csv")
     ap.add_argument("--threshold", type=float, default=COMMON["abstain_threshold"])
     ap.add_argument("--out", default="report")
+    ap.add_argument("--wrong-cost", type=float, default=WRONG_COST, help="penalty for a wrong value")
+    ap.add_argument("--abstain-cost", type=float, default=ABSTAIN_COST, help="penalty for a withheld/missed value")
     a = ap.parse_args()
+    set_costs(a.wrong_cost, a.abstain_cost)
     gt = load_gt(a.gt)
-    results = [evaluate_run(d, gt, a.threshold) for d in a.runs]
+    runs = [d for d in a.runs if os.path.getsize(os.path.join(d, "trace.jsonl")) > 0]
+    for d in set(a.runs) - set(runs):
+        print(f"skipping {d}: no successful targets in trace.jsonl")
+    results = [evaluate_run(d, gt, a.threshold) for d in runs]
     os.makedirs(a.out, exist_ok=True)
     name = "-".join(os.path.basename(d.rstrip("/")) for d in a.runs)
     open(os.path.join(a.out, f"{name}.md"), "w").write(to_md(results))

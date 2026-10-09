@@ -12,7 +12,7 @@ from datetime import date
 
 import pymupdf
 
-from config import COMMON, FIELD_INSTRUCTIONS, TABLES
+from config import COMMON, DATED_FIELDS, FIELD_INSTRUCTIONS, FIELD_RANGES, FIELDS, PERIODS, TABLES
 
 # ----------------------------------------------------------------------------- tracing
 
@@ -137,6 +137,10 @@ def identify(doc, fund_name, ticker):
     """
     name = norm(fund_name)
     tick = re.compile(r"\b" + re.escape(ticker.lower()) + r"\b")
+    if sum(len(t) for t in doc.text) < 100 * doc.n:
+        return dict(start=None, end=None, method="no_text_layer")      # scanned PDF: no OCR path, say so
+    if not any(name in t or tick.search(t) for t in doc.text):
+        return dict(start=None, end=None, method="target_not_found")   # never extract another fund's numbers
     heads = [i + 1 for i, r in enumerate(doc.raw) if any(HEADING.match(l) for l in r.splitlines())]
 
     best = None
@@ -224,8 +228,8 @@ TOOL = {
                     "properties": {
                         "share_class": {"type": "string"},
                         "field": {"type": "string",
-                                  "enum": ["gross_expense_ratio", "net_expense_ratio", "total_return_before_tax"]},
-                        "period": {"type": "string", "enum": ["current", "1y", "5y", "10y", "since_inception"]},
+                                  "enum": FIELDS},
+                        "period": {"type": "string", "enum": PERIODS},
                         "raw_value": {"type": "string"},
                         "page": {"type": "integer"},
                         "inception_date": {"type": ["string", "null"]},
@@ -250,14 +254,26 @@ class LLM:
         self.model = model
         self.trace = trace
 
+    FORCED_UNSUPPORTED = set()                     # models that reject tool_choice type "tool"
+
     def call(self, stage, user, max_tokens):
+        import anthropic
         t = time.perf_counter()
-        r = self.client.messages.create(
-            model=self.model, max_tokens=max_tokens,
-            system=[{"type": "text", "text": SYSTEM, "cache_control": {"type": "ephemeral"}}],
-            tools=[TOOL], tool_choice={"type": "tool", "name": TOOL["name"]},
-            messages=[{"role": "user", "content": user}],
-        )
+        kw = dict(model=self.model, max_tokens=max_tokens,
+                  system=[{"type": "text", "text": SYSTEM, "cache_control": {"type": "ephemeral"}}],
+                  tools=[TOOL], messages=[{"role": "user", "content": user}])
+        if self.model in LLM.FORCED_UNSUPPORTED:
+            kw["tool_choice"] = {"type": "auto"}
+            kw["messages"][0]["content"] = user + "\n\nRespond ONLY by calling the record_values tool."
+            r = self.client.messages.create(**kw)
+        else:
+            try:
+                r = self.client.messages.create(**kw, tool_choice={"type": "tool", "name": TOOL["name"]})
+            except anthropic.BadRequestError as e:
+                if "tool_choice" not in str(e):
+                    raise
+                LLM.FORCED_UNSUPPORTED.add(self.model)
+                return self.call(stage, user, max_tokens)
         u = r.usage
         self.trace.llm_calls.append(dict(
             stage=stage, model=self.model, latency_s=round(time.perf_counter() - t, 3),
@@ -376,11 +392,18 @@ def normalize(doc, raw_out, located, fund_ticker):
         on_page = bool(digits) and page in located["pages"] and digits in doc.layout(page)
         on_any = bool(digits) and any(digits in doc.layout(p) for p in located["pages"])
         period = v["period"]
-        if v["field"] == "total_return_before_tax":
+        inception = v.get("inception_date")
+        if period == "since_inception" and not inception and digits and page in located["pages"]:
+            # iter4: the model often skips a separate "Inception Date" column; read it off the value's own line
+            for line in doc.layout(page).splitlines():
+                if digits in line and find_dates(line):
+                    inception = find_dates(line)[0].isoformat()
+                    break
+        if v["field"] in DATED_FIELDS:
             period = f"{period}@{as_of.isoformat() if as_of else 'unknown'}"
         rows.append(dict(
             fund=fund_ticker, share_class=canon_class(v["share_class"]), field=v["field"], period=period,
-            value=value, raw_value=v.get("raw_value"), page=page, inception_date=v.get("inception_date"),
+            value=value, raw_value=v.get("raw_value"), page=page, inception_date=inception,
             status="reported" if value is not None else "not_reported",
             llm_conf=float(v.get("confidence", 0.5)), grounded=on_page, grounded_any=on_any))
 
@@ -398,11 +421,10 @@ def normalize(doc, raw_out, located, fund_ticker):
             check = 1.0 if pg and r["raw_value"] is not None and r["raw_value"].strip() in doc.layout(pg) else 0.5
         else:
             check = 1.0 if r["grounded"] else (0.6 if r["grounded_any"] else 0.0)
-            if "expense" in r["field"] and not (0 <= r["value"] <= 10):
+            lo, hi = FIELD_RANGES.get(r["field"], (-1e9, 1e9))
+            if not (lo <= r["value"] <= hi):
                 check -= 0.5
-            if r["field"] == "total_return_before_tax" and not (-100 <= r["value"] <= 500):
-                check -= 0.5
-            if r["field"] == "total_return_before_tax" and r["period"].endswith("@unknown"):
+            if r["field"] in DATED_FIELDS and r["period"].endswith("@unknown"):
                 check -= 0.5                       # iter2: period label is incomplete -> not trustworthy as a key
             if r["field"] == "net_expense_ratio" and gross.get(r["share_class"]) is not None \
                     and r["value"] > gross[r["share_class"]] + 1e-9:
@@ -461,8 +483,8 @@ def label_free_signals(rows):
     if not direct:
         return dict(completeness=0.0, grounded=0.0, as_of_found=False)
     classes = {r["share_class"] for r in direct}
-    horizons = {r["period"] for r in direct if r["field"] == "total_return_before_tax"}
-    expected = len(classes) * (2 + max(len(horizons), 1))
+    slots = {(r["field"], r["period"]) for r in direct}          # every (field, period) seen for any class
+    expected = len(classes) * len(slots)
     got = len({(r["share_class"], r["field"], r["period"]) for r in direct})
     rep = [r for r in direct if r["status"] == "reported"]
     return dict(completeness=round(min(got / expected, 1.0), 3),
@@ -480,9 +502,16 @@ def run_target(path, fund_name, ticker, cfg, dry_run=False):
         doc = Doc(path)
     with trace.stage("identify"):
         section = identify(doc, fund_name, ticker)
-    with trace.stage("locate"):
-        located = locate(doc, section, cfg["locate"])
     rows = []
+    if section["start"] is None:
+        located = dict(pages=[], best={})
+        rows = [dict(fund=ticker, share_class="*", field="*", period="*", value=None, status=section["method"],
+                     confidence=1.0, page=None, raw_value=None, inception_date=None, llm_conf=None, check=None,
+                     grounded=None, grounded_any=None)]
+        dry_run = True                                                  # nothing to send to the model
+    else:
+        with trace.stage("locate"):
+            located = locate(doc, section, cfg["locate"])
     if not dry_run:
         llm = LLM(cfg["model"], trace)
         with trace.stage("extract"):
@@ -491,8 +520,23 @@ def run_target(path, fund_name, ticker, cfg, dry_run=False):
             rows = normalize(doc, raw_out, located, ticker)
             rows = dedupe(rows)
             rows += derive(rows) if rows else []
+        # C4: escalate to the whole section only when the cheap path fails its own label-free checks
+        sig = label_free_signals(rows)
+        if cfg.get("escalate") and (sig["completeness"] < 1.0 or not sig["as_of_found"]):
+            located2 = locate(doc, section, "section")
+            n_before = len(trace.llm_calls)
+            with trace.stage("extract"):
+                raw2 = extract(doc, located2, fund_name, ticker, {**cfg, "locate": "section"}, llm)
+            for c in trace.llm_calls[n_before:]:
+                c["escalated"] = True
+            with trace.stage("normalize"):
+                rows2 = dedupe(normalize(doc, raw2, located2, ticker))
+                rows2 += derive(rows2) if rows2 else []
+            if label_free_signals(rows2)["completeness"] >= sig["completeness"]:
+                rows, located = rows2, located2
     total = time.perf_counter() - t0
-    signals = label_free_signals(rows)
+    signals = label_free_signals([r for r in rows if r["field"] != "*"])
+    signals["escalated"] = any(c.get("escalated") for c in trace.llm_calls)
     meta = dict(file=path.split("/")[-1], fund=ticker, pages=doc.n,
                 doc_date=doc.doc_date.isoformat() if doc.doc_date else None,
                 section=section, located=located["pages"], best=located["best"],
