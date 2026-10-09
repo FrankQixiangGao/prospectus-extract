@@ -1,0 +1,187 @@
+file,doc_date,fund,share_class,field,period,value,status,page,governs,note
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLC,single,gross_expense_ratio,current,0.08,reported,5,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLC,single,net_expense_ratio,current,0.08,reported,5,true,no waiver row: net=gross
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLC,single,total_return_before_tax,1y@2025-12-31,23.1,reported,11,true,SI inception 2018-06-18; no 10y column
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLC,single,total_return_before_tax,5y@2025-12-31,12.85,reported,11,true,SI inception 2018-06-18; no 10y column
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLC,single,total_return_before_tax,since_inception@2025-12-31,13.1,reported,11,true,SI inception 2018-06-18; no 10y column
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLK,single,gross_expense_ratio,current,0.08,reported,79,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLK,single,net_expense_ratio,current,0.08,reported,79,true,no waiver row: net=gross
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLK,single,total_return_before_tax,1y@2025-12-31,24.6,reported,85,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLK,single,total_return_before_tax,5y@2025-12-31,18.11,reported,85,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLK,single,total_return_before_tax,10y@2025-12-31,22.34,reported,85,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLU,single,gross_expense_ratio,current,0.08,reported,87,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLU,single,net_expense_ratio,current,0.08,reported,87,true,no waiver row: net=gross
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLU,single,total_return_before_tax,1y@2025-12-31,16.01,reported,94,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLU,single,total_return_before_tax,5y@2025-12-31,9.64,reported,94,true,
+statestreet_XLC_statutory_2026-01-31.pdf,2026-01-31,XLU,single,total_return_before_tax,10y@2025-12-31,10.48,reported,94,true,
+statestreet_XLK_summary_2026-01-31.pdf,2026-01-31,XLK,single,gross_expense_ratio,current,0.08,reported,1,true,
+statestreet_XLK_summary_2026-01-31.pdf,2026-01-31,XLK,single,net_expense_ratio,current,0.08,reported,1,true,no waiver row: net=gross
+statestreet_XLK_summary_2026-01-31.pdf,2026-01-31,XLK,single,total_return_before_tax,1y@2025-12-31,24.6,reported,4,true,
+statestreet_XLK_summary_2026-01-31.pdf,2026-01-31,XLK,single,total_return_before_tax,5y@2025-12-31,18.11,reported,4,true,
+statestreet_XLK_summary_2026-01-31.pdf,2026-01-31,XLK,single,total_return_before_tax,10y@2025-12-31,22.34,reported,4,true,
+blackrock_IVV_summary_2026-07-31.pdf,2026-07-31,IVV,single,gross_expense_ratio,current,0.03,reported,1,true,
+blackrock_IVV_summary_2026-07-31.pdf,2026-07-31,IVV,single,net_expense_ratio,current,0.03,reported,1,true,no waiver row: net=gross
+blackrock_IVV_summary_2026-07-31.pdf,2026-07-31,IVV,single,total_return_before_tax,1y@2025-12-31,17.85,reported,5,true,
+blackrock_IVV_summary_2026-07-31.pdf,2026-07-31,IVV,single,total_return_before_tax,5y@2025-12-31,14.39,reported,5,true,
+blackrock_IVV_summary_2026-07-31.pdf,2026-07-31,IVV,single,total_return_before_tax,10y@2025-12-31,14.78,reported,5,true,
+blackrock_IVV_statutory_2026-07-31.pdf,2026-07-31,IVV,single,gross_expense_ratio,current,0.03,reported,4,true,
+blackrock_IVV_statutory_2026-07-31.pdf,2026-07-31,IVV,single,net_expense_ratio,current,0.03,reported,4,true,no waiver row: net=gross
+blackrock_IVV_statutory_2026-07-31.pdf,2026-07-31,IVV,single,total_return_before_tax,1y@2025-12-31,17.85,reported,7,true,
+blackrock_IVV_statutory_2026-07-31.pdf,2026-07-31,IVV,single,total_return_before_tax,5y@2025-12-31,14.39,reported,7,true,
+blackrock_IVV_statutory_2026-07-31.pdf,2026-07-31,IVV,single,total_return_before_tax,10y@2025-12-31,14.78,reported,7,true,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,investor,gross_expense_ratio,current,0.24,reported,2,false,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,investor,net_expense_ratio,current,0.24,reported,2,false,no waiver row: net=gross
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,admiral,gross_expense_ratio,current,0.16,reported,2,false,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,admiral,net_expense_ratio,current,0.16,reported,2,false,no waiver row: net=gross
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,investor,total_return_before_tax,1y@2025-12-31,16.48,reported,7,false,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,investor,total_return_before_tax,5y@2025-12-31,9.28,reported,7,false,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,investor,total_return_before_tax,10y@2025-12-31,10.02,reported,7,false,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,admiral,total_return_before_tax,1y@2025-12-31,16.57,reported,7,false,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,admiral,total_return_before_tax,5y@2025-12-31,9.37,reported,7,false,
+vanguard_VWELX_summary_2026-03-27.pdf,2026-03-27,VWELX,admiral,total_return_before_tax,10y@2025-12-31,10.1,reported,7,false,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,investor,gross_expense_ratio,current,0.24,reported,4,true,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,investor,net_expense_ratio,current,0.24,reported,4,true,no waiver row: net=gross
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,admiral,gross_expense_ratio,current,0.16,reported,4,true,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,admiral,net_expense_ratio,current,0.16,reported,4,true,no waiver row: net=gross
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,investor,total_return_before_tax,1y@2025-12-31,16.48,reported,9,true,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,investor,total_return_before_tax,5y@2025-12-31,9.28,reported,9,true,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,investor,total_return_before_tax,10y@2025-12-31,10.02,reported,9,true,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,admiral,total_return_before_tax,1y@2025-12-31,16.57,reported,9,true,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,admiral,total_return_before_tax,5y@2025-12-31,9.37,reported,9,true,
+vanguard_VWELX_statutory_2026-03-27.pdf,2026-05-20,VWELX,admiral,total_return_before_tax,10y@2025-12-31,10.1,reported,9,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,investor,gross_expense_ratio,current,0.7,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,investor,net_expense_ratio,current,0.7,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,i,gross_expense_ratio,current,0.57,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,i,net_expense_ratio,current,0.57,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,advisor,gross_expense_ratio,current,0.96,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,advisor,net_expense_ratio,current,0.96,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,r,gross_expense_ratio,current,1.21,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,r,net_expense_ratio,current,1.21,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,z,gross_expense_ratio,current,0.55,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,z,net_expense_ratio,current,0.0,reported,2,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,investor,total_return_before_tax,1y@2025-12-31,18.78,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,investor,total_return_before_tax,5y@2025-12-31,11.7,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,investor,total_return_before_tax,10y@2025-12-31,15.66,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,investor,total_return_before_tax,since_inception@2025-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,i,total_return_before_tax,1y@2025-12-31,18.94,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,i,total_return_before_tax,5y@2025-12-31,11.85,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,i,total_return_before_tax,10y@2025-12-31,15.81,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,i,total_return_before_tax,since_inception@2025-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,advisor,total_return_before_tax,1y@2025-12-31,18.47,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,advisor,total_return_before_tax,5y@2025-12-31,11.41,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,advisor,total_return_before_tax,10y@2025-12-31,15.35,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,advisor,total_return_before_tax,since_inception@2025-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,r,total_return_before_tax,1y@2025-12-31,18.16,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,r,total_return_before_tax,5y@2025-12-31,11.12,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,r,total_return_before_tax,10y@2025-12-31,15.05,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,r,total_return_before_tax,since_inception@2025-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,z,total_return_before_tax,1y@2025-12-31,19.62,reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,z,total_return_before_tax,5y@2025-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,z,total_return_before_tax,10y@2025-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2026-03-01.pdf,2026-03-01,TRBCX,z,total_return_before_tax,since_inception@2025-12-31,12.22,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,investor,gross_expense_ratio,current,0.69,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,investor,net_expense_ratio,current,0.69,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,i,gross_expense_ratio,current,0.57,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,i,net_expense_ratio,current,0.57,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,advisor,gross_expense_ratio,current,0.95,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,advisor,net_expense_ratio,current,0.95,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,r,gross_expense_ratio,current,1.21,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,r,net_expense_ratio,current,1.21,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,z,gross_expense_ratio,current,0.55,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,z,net_expense_ratio,current,0.0,reported,2,false,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,investor,total_return_before_tax,1y@2024-12-31,35.63,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,investor,total_return_before_tax,5y@2024-12-31,14.55,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,investor,total_return_before_tax,10y@2024-12-31,14.89,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,investor,total_return_before_tax,since_inception@2024-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,i,total_return_before_tax,1y@2024-12-31,35.79,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,i,total_return_before_tax,5y@2024-12-31,14.7,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,i,total_return_before_tax,10y@2024-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,i,total_return_before_tax,since_inception@2024-12-31,15.39,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,advisor,total_return_before_tax,1y@2024-12-31,35.27,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,advisor,total_return_before_tax,5y@2024-12-31,14.25,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,advisor,total_return_before_tax,10y@2024-12-31,14.59,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,advisor,total_return_before_tax,since_inception@2024-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,r,total_return_before_tax,1y@2024-12-31,34.92,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,r,total_return_before_tax,5y@2024-12-31,13.96,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,r,total_return_before_tax,10y@2024-12-31,14.29,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,r,total_return_before_tax,since_inception@2024-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,z,total_return_before_tax,1y@2024-12-31,36.57,reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,z,total_return_before_tax,5y@2024-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,z,total_return_before_tax,10y@2024-12-31,,not_reported,7,true,
+troweprice_TRBCX_summary_2025-03-01.pdf,2025-03-01,TRBCX,z,total_return_before_tax,since_inception@2024-12-31,10.37,reported,7,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,i,gross_expense_ratio,current,0.51,reported,2,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,i,net_expense_ratio,current,0.51,reported,2,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,x,gross_expense_ratio,current,0.46,reported,2,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,x,net_expense_ratio,current,0.41,reported,2,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,i,total_return_before_tax,1y@2025-12-31,13.66,reported,4,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,i,total_return_before_tax,5y@2025-12-31,13.31,reported,4,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,i,total_return_before_tax,10y@2025-12-31,12.79,reported,4,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,x,total_return_before_tax,1y@2025-12-31,13.77,reported,4,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,x,total_return_before_tax,5y@2025-12-31,13.4,reported,4,true,
+dodgcox_DODGX_summary_2026-05-01.pdf,2026-05-01,DODGX,x,total_return_before_tax,10y@2025-12-31,12.84,reported,4,true,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,i,gross_expense_ratio,current,0.51,reported,3,false,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,i,net_expense_ratio,current,0.51,reported,3,false,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,x,gross_expense_ratio,current,0.46,reported,3,false,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,x,net_expense_ratio,current,0.41,reported,3,false,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,i,total_return_before_tax,1y@2024-12-31,14.52,reported,4,true,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,i,total_return_before_tax,5y@2024-12-31,11.99,reported,4,true,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,i,total_return_before_tax,10y@2024-12-31,10.85,reported,4,true,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,x,total_return_before_tax,1y@2024-12-31,14.63,reported,4,true,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,x,total_return_before_tax,5y@2024-12-31,12.04,reported,4,true,
+dodgcox_DODGX_statutory_2025-05-01.pdf,2025-05-01,DODGX,x,total_return_before_tax,10y@2024-12-31,10.88,reported,4,true,
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,a,gross_expense_ratio,current,0.91,reported,1,true,
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,a,net_expense_ratio,current,0.91,reported,1,true,no waiver row: net=gross
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,c,gross_expense_ratio,current,1.75,reported,1,true,
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,c,net_expense_ratio,current,1.75,reported,1,true,no waiver row: net=gross
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,r,gross_expense_ratio,current,1.2,reported,1,true,
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,r,net_expense_ratio,current,1.2,reported,1,true,no waiver row: net=gross
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,y,gross_expense_ratio,current,0.67,reported,1,true,
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,y,net_expense_ratio,current,0.67,reported,1,true,no waiver row: net=gross
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,a,total_return_before_tax,1y@2024-12-31,11.93,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,a,total_return_before_tax,5y@2024-12-31,8.52,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,a,total_return_before_tax,10y@2024-12-31,9.24,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,c,total_return_before_tax,1y@2024-12-31,15.55,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,c,total_return_before_tax,5y@2024-12-31,8.66,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,c,total_return_before_tax,10y@2024-12-31,9.07,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,r,total_return_before_tax,1y@2024-12-31,17.13,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,r,total_return_before_tax,5y@2024-12-31,9.28,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,r,total_return_before_tax,10y@2024-12-31,9.46,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,y,total_return_before_tax,1y@2024-12-31,17.75,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,y,total_return_before_tax,5y@2024-12-31,9.83,reported,3,true,A-class returns include max sales charge
+davis_NYVTX_summary_2025-12-01.pdf,2025-12-01,NYVTX,y,total_return_before_tax,10y@2024-12-31,10.04,reported,3,true,A-class returns include max sales charge
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,investor,gross_expense_ratio,current,1.21,reported,2,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,investor,net_expense_ratio,current,1.21,reported,2,false,no waiver row: net=gross
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,advisor,gross_expense_ratio,current,1.07,reported,2,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,advisor,net_expense_ratio,current,1.07,reported,2,false,no waiver row: net=gross
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,institutional,gross_expense_ratio,current,0.98,reported,2,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,institutional,net_expense_ratio,current,0.98,reported,2,false,no waiver row: net=gross
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,investor,total_return_before_tax,1y@2025-12-31,14.75,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,investor,total_return_before_tax,5y@2025-12-31,2.12,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,investor,total_return_before_tax,10y@2025-12-31,10.81,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,investor,total_return_before_tax,since_inception@2025-12-31,12.62,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,advisor,total_return_before_tax,1y@2025-12-31,14.91,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,advisor,total_return_before_tax,5y@2025-12-31,2.26,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,advisor,total_return_before_tax,10y@2025-12-31,10.97,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,advisor,total_return_before_tax,since_inception@2025-12-31,10.08,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,institutional,total_return_before_tax,1y@2025-12-31,15.04,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,institutional,total_return_before_tax,5y@2025-12-31,2.36,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,institutional,total_return_before_tax,10y@2025-12-31,11.07,reported,5,false,
+artisan_ARTMX_summary_2026-02-01.pdf,2026-06-30,ARTMX,institutional,total_return_before_tax,since_inception@2025-12-31,9.08,reported,5,false,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,investor,gross_expense_ratio,current,1.21,reported,82,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,investor,net_expense_ratio,current,1.21,reported,82,true,no waiver row: net=gross
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,advisor,gross_expense_ratio,current,1.07,reported,82,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,advisor,net_expense_ratio,current,1.07,reported,82,true,no waiver row: net=gross
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,institutional,gross_expense_ratio,current,0.98,reported,82,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,institutional,net_expense_ratio,current,0.98,reported,82,true,no waiver row: net=gross
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,investor,total_return_before_tax,1y@2025-12-31,14.75,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,investor,total_return_before_tax,5y@2025-12-31,2.12,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,investor,total_return_before_tax,10y@2025-12-31,10.81,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,investor,total_return_before_tax,since_inception@2025-12-31,12.62,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,advisor,total_return_before_tax,1y@2025-12-31,14.91,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,advisor,total_return_before_tax,5y@2025-12-31,2.26,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,advisor,total_return_before_tax,10y@2025-12-31,10.97,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,advisor,total_return_before_tax,since_inception@2025-12-31,10.08,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,institutional,total_return_before_tax,1y@2025-12-31,15.04,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,institutional,total_return_before_tax,5y@2025-12-31,2.36,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,institutional,total_return_before_tax,10y@2025-12-31,11.07,reported,85,true,
+artisan_ARTMX_statutory_2026-02-01.pdf,2026-08-31,ARTMX,institutional,total_return_before_tax,since_inception@2025-12-31,9.08,reported,85,true,

@@ -1,0 +1,14 @@
+file,family,doc_type,doc_date,page_count,source_url,share_classes,class_tickers,role
+statestreet_XLC_statutory_2026-01-31.pdf,statestreet,statutory,2026-01-31,141,https://www.ssga.com/us/en/intermediary/etfs/state-street-technology-select-sector-spdr-etf-xlk,XLC|XLY|XLP|XLE|XLF|XLV|XLI|XLB|XLRE|XLK|XLU,XLC|XLY|XLP|XLE|XLF|XLV|XLI|XLB|XLRE|XLK|XLU,umbrella|large_doc
+statestreet_XLK_summary_2026-01-31.pdf,statestreet,summary,2026-01-31,4,https://www.ssga.com/us/en/intermediary/etfs/state-street-technology-select-sector-spdr-etf-xlk,XLK,XLK,no_load_etf
+blackrock_IVV_summary_2026-07-31.pdf,blackrock,summary,2026-07-31,8,https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf,IVV,IVV,no_load_etf
+blackrock_IVV_statutory_2026-07-31.pdf,blackrock,statutory,2026-07-31,136,https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf,IVV,IVV,large_doc|umbrella
+vanguard_VWELX_summary_2026-03-27.pdf,vanguard,summary,2026-03-27,12,https://personal1.vanguard.com/pub/Pdf/sp21.pdf,Investor|Admiral,VWELX|VWENX,normal
+vanguard_VWELX_statutory_2026-03-27.pdf,vanguard,statutory,2026-03-27,57,https://personal1.vanguard.com/pub/Pdf/p021.pdf,Investor|Admiral,VWELX|VWENX,normal
+troweprice_TRBCX_summary_2026-03-01.pdf,troweprice,summary,2026-03-01,8,https://www.troweprice.com,Investor|I|Advisor|R|Z,TRBCX|TBCIX|PABGX|RRBGX|TRZBX,normal
+troweprice_TRBCX_summary_2025-03-01.pdf,troweprice,summary,2025-03-01,12,https://www.sec.gov/Archives/edgar/data/902259/000174177325000665/c497k.htm,Investor|I|Advisor|R|Z,TRBCX|TBCIX|PABGX|RRBGX|TRZBX,second_date
+dodgcox_DODGX_summary_2026-05-01.pdf,dodgcox,summary,2026-05-01,6,https://www.dodgeandcox.com,I|X,DODGX|DOXGX,normal
+dodgcox_DODGX_statutory_2025-05-01.pdf,dodgcox,statutory,2025-05-01,170,https://www.sec.gov/Archives/edgar/data/29440/000119312525107950/d44849d497.htm,I|X,DODGX|DOXGX,second_date|large_doc|umbrella
+davis_NYVTX_summary_2025-12-01.pdf,davis,summary,2025-12-01,4,https://www.davisfunds.com,A|C|R|Y,NYVTX|NYVCX|NYVRX|DNVYX,normal
+artisan_ARTMX_summary_2026-02-01.pdf,artisan,summary,2026-02-01,6,https://www.artisanpartners.com,Investor|Advisor|Institutional,ARTMX|APDMX|APHMX,normal
+artisan_ARTMX_statutory_2026-02-01.pdf,artisan,statutory,2026-02-01,170,https://www.artisanpartners.com,Investor|Advisor|Institutional,ARTMX|APDMX|APHMX,large_doc
